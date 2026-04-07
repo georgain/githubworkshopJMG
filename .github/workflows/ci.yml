@@ -79,10 +79,10 @@ jobs:
         with:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-workshop
           tags: |
-            type:raw,value=latest
-            type:raw,value=main,enable={{is_default_branch}}
-            type:ref,event=tag
-            type:sha
+            type=raw,value=latest
+            type=raw,value=main,enable={{is_default_branch}}
+            type=ref,event=tag
+            type=sha
       - name: Print generated tags
         run: echo "${{ steps.meta.outputs.tags }}"
       - name: Build & Push Docker image
@@ -91,8 +91,6 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-workshop:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/github-actions-workshop:${{ github.sha }}            
+          tags: ${{ steps.meta.outputs.tags }}            
           labels: ${{ steps.meta.outputs.labels }}
   
