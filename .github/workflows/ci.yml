@@ -89,4 +89,8 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
       - name: Trigger render PROD deploy
+<<<<<<< HEAD
         run: curl -X POST "${{ secrets.RENDER_PROD_DEPLOY_HOOK }}"
+=======
+        run: curl -X POST "${{ secrets.RENDER_PROD_DEPLOY_HOOK }}"
+>>>>>>> 62530506b76d2dc63423a20d95295e57913223eb
